@@ -50,7 +50,7 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "你的小程序APPID",
+        "appid" : "wx539efd2e45d79197",
         "setting" : {
             "urlCheck" : false,
             "minified" : true
@@ -61,7 +61,7 @@
             "ocr-plugin" : {
                 "version" : "3.0.6",
                 "provider" : "wx4418e3e031e551be"
-            } 
+            }
         },
         "permission" : {
             "scope.userLocation" : {
