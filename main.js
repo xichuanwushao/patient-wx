@@ -28,7 +28,7 @@ app.$mount()
 // #endif
 
 
-let minioUrl = "http://192.168.3.151:9000/hospital"
+let minioUrl = "http://192.168.3.151:9002/hospital"
 Vue.prototype.minioUrl = minioUrl
 
 let patientUrl = minioUrl + "/patient-wx"
