@@ -331,6 +331,71 @@ export default {
                 ref.validate = false;
             }
         },
+        illnessHandle: function(name) {
+            let that = this;
+            let medicalHistory = that.dataForm.medicalHistory;
+            //如果数组中包含了点击的这个疾病，就要取消选中
+            if (medicalHistory.includes(name)) {
+                //从数组中获取该疾病以外的疾病，相当于把该疾病剔除
+                medicalHistory = medicalHistory.filter(function(one) {
+                    if (one != name) {
+                        return one;
+                    }
+                });
+                //如果数组里面没有疾病，就添加“无”这个元素
+                if (medicalHistory.length == 0) {
+                    medicalHistory.push('无');
+                }
+            }
+            //如果数组中没有这个疾病，说明要选中该疾病
+            else {
+                //如果疾病名字不是“无”
+                if (name != '无') {
+                    //把数组中的“无”去掉，添加具体疾病
+                    medicalHistory = medicalHistory.filter(function(one) {
+                        if (one != '无') {
+                            return one;
+                        }
+                    });
+                    medicalHistory.push(name);
+                }
+                //如果选中疾病是“无”
+                else {
+                    //把数组中所有疾病去掉，添加“无”
+                    medicalHistory.length = 0;
+                    medicalHistory.push('无');
+                }
+            }
+            that.dataForm.medicalHistory = medicalHistory;
+        },
+        insuranceTypeHandle: function(name) {
+            this.dataForm.insuranceType = name;
+        },
+        submitHandle: function() {
+            let that = this;
+            uni.showModal({
+                title: '提示消息',
+                content: that.flag == 'insert' ? '确定创建就诊卡？' : '确定更新就诊卡信息？',
+                success: function(resp) {
+                    if (resp.confirm) {
+                        let data = that.dataForm;
+                        let url = that.flag == 'insert' ? that.api.insertUserInfoCard : that.api.updateUserInfoCard ;
+                        that.ajax(url, 'POST', data, function(resp) {
+                            uni.showToast({
+                                icon: 'success',
+                                title: that.flag == 'insert' ? '就诊卡创建成功' : '就诊卡更新成功'
+                            });
+                            setTimeout(function() {
+                                uni.switchTab({
+                                    url: '/pages/mine/mine'
+                                });
+                            }, 1500);
+                        });
+                    }
+                }
+            });
+        }
+
     },
     onLoad: function() {
 

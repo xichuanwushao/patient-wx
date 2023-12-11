@@ -43,6 +43,9 @@ Vue.prototype.tencent = {
 let baseUrl = "http://172.16.3.215:8091/patient-wx-api"
 
 Vue.prototype.api = {
+	loginOrRegister: baseUrl + "/user/loginOrRegister",
+	insertUserInfoCard: baseUrl + "/user/info/card/insert",
+	updateUserInfoCard: baseUrl + "/user/info/card/update",
 
 }
 
