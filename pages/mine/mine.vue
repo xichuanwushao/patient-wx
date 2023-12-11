@@ -181,10 +181,58 @@ export default {
 		};
 	},
 	methods: {
-		
+        loginOrRegister: function() {
+            let that = this;
+            //获取微信用户的临时授权
+            uni.login({
+                provider:"weixin",
+                success: function(resp) {
+                    let code = resp.code;
+                    that.code = code;
+                }
+            });
+            //获取用户的微信资料用于注册
+            uni.getUserProfile({
+                desc: '获取用户信息',
+                success: function(resp) {
+                    let info = resp.userInfo;
+                    let nickname = info.nickName; //昵称
+                    let photo = info.avatarUrl; //头像URL
+                    let sex = info.gender == 0 ? '男' : '女'; //性别
+                    let data = {
+                        code: that.code,
+                        nickname: nickname,
+                        photo: photo,
+                        sex: sex
+                    };
+                    //提交Ajax请求，执行登陆或注册
+                    that.ajax(that.api.loginOrRegister, 'POST', data, function(resp) {
+                        let msg = resp.data.msg;
+                        that.$refs.uToast.show({
+                            message: msg,
+                            type: 'success',
+                            duration: 1200,
+                            complete: function() {
+                                let token = resp.data.token;
+                                //把Token保存到Storage
+                                uni.setStorageSync('token', token);
+                                //更新页面标志位变量
+                                that.flag = 'login';
+                                that.user.username = nickname;
+                                that.user.photo = photo;
+                                //如果用户创建了患者信息卡，就把电话显示在页面上
+                                if (resp.data.hasOwnProperty('tel')) {
+                                    that.user.tel = resp.data.tel;
+                                }
+                            }
+                        });
+                    });
+                }
+            });
+        },
 	},
 	onShow: function() {
-		
+
 	}
 };
 </script>
