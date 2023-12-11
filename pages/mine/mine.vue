@@ -230,6 +230,26 @@ export default {
                 }
             });
         },
+
+        navigatorHandle: function(name) {
+            let token = uni.getStorageSync('token');
+            //跳转到某些医疗服务页面之前，先判断是否登陆
+            if (token == null || token.length == 0) {
+                uni.showToast({
+                    icon: 'error',
+                    title: '请先登录小程序'
+                });
+                return;
+            }
+            let url = null;
+            if (name == '实名登记') {
+                url = '/user/fill_user_info/fill_user_info';
+            }
+            //TODO 其他判断条件
+            uni.navigateTo({
+                url: url
+            });
+        }
 	},
 	onShow: function() {
 

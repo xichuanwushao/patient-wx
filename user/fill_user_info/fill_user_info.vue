@@ -286,10 +286,54 @@ export default {
         };
     },
     methods: {
-        
+        selectSex: function(e) {
+            this.dataForm.sex = e.name;
+        },
+        confirmBirthday: function(e) {
+            this.showDatetime = false;
+            let date = new Date();
+            date.setTime(e.value);
+            this.dataForm.birthday = dayjs(date).format('YYYY-MM-DD');
+            this.$refs.form1.validateField('birthday');
+        },
+        nextHandle: function() {
+            let that = this;
+            that.validate = true;
+            that.$refs.form1.validateField('name', function(errors) {
+                that.validateFieldHandle(that, errors);
+            });
+            that.$refs.form1.validateField('pid', function(errors) {
+                that.validateFieldHandle(that, errors);
+            });
+            that.$refs.form1.validateField('tel', function(errors) {
+                that.validateFieldHandle(that, errors);
+            });
+            that.$refs.form1.validateField('sex', function(errors) {
+                that.validateFieldHandle(that, errors);
+            });
+            that.$refs.form1.validateField('birthday', function(errors) {
+                that.validateFieldHandle(that, errors);
+            });
+            //以上验证是异步的，所以需要定时器预估时间
+            setTimeout(function() {
+                if (!that.validate) {
+                    uni.showToast({
+                        icon: 'error',
+                        title: '数据不正确'
+                    });
+                    return;
+                }
+                that.showInfoPanel = 2;
+            }, 500);
+        },
+        validateFieldHandle: function(ref, errors) {
+            if (errors.length > 0) {
+                ref.validate = false;
+            }
+        },
     },
     onLoad: function() {
-        
+
     }
 };
 </script>
