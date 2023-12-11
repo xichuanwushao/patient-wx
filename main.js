@@ -40,7 +40,7 @@ Vue.prototype.tencent = {
 	}
 }
 
-let baseUrl = "http://192.168.3.150:8091/patient-wx-api"
+let baseUrl = "http:// 172.16.3.215:8091/patient-wx-api"
 
 Vue.prototype.api = {
 
