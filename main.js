@@ -46,6 +46,7 @@ Vue.prototype.api = {
 	loginOrRegister: baseUrl + "/user/loginOrRegister",
 	insertUserInfoCard: baseUrl + "/user/info/card/insert",
 	updateUserInfoCard: baseUrl + "/user/info/card/update",
+	searchUserInfo:baseUrl + "/user/searchUserInfo",
 
 }
 

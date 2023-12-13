@@ -252,7 +252,27 @@ export default {
         }
 	},
 	onShow: function() {
+	 let that = this;
+	 let token = uni.getStorageSync('token');
+    if (token != null) {
+    that.ajax(
 
+	    that.api.searchUserInfo,
+	    'GET',
+	    {},
+	 function(resp) {
+         // console.log(resp);
+         if (resp.data.hasOwnProperty('result')) {
+         that.flag = 'login';
+         let result = resp.data.result;
+         that.user.username = result.nickname;
+         that.user.photo = result.photo;
+         that.user.tel = result.tel;
+	                }
+	            },
+	        false
+	     );
+	    }
 	}
 };
 </script>
