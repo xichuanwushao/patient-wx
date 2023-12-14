@@ -47,6 +47,7 @@ Vue.prototype.api = {
 	insertUserInfoCard: baseUrl + "/user/info/card/insert",
 	updateUserInfoCard: baseUrl + "/user/info/card/update",
 	searchUserInfo:baseUrl + "/user/searchUserInfo",
+	searchUserInfoCard: baseUrl + "/user/info/card/searchUserInfoCard",
 
 }
 

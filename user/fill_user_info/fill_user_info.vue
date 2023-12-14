@@ -396,10 +396,34 @@ export default {
             });
         }
 
+
     },
     onLoad: function() {
-
+        let that = this;
+        that.ajax(
+            that.api.searchUserInfoCard,
+            'GET',
+            {},
+            function(resp) {
+                let data = resp.data;
+                if (data.msg == '没有查询到数据') {
+                    that.flag = 'insert';
+                    return;
+                }
+                that.flag = 'update';
+                that.dataForm.id = data.id;
+                that.dataForm.name = data.name;
+                that.dataForm.sex = data.sex;
+                that.dataForm.pid = data.pid;
+                that.dataForm.tel = data.tel;
+                that.dataForm.birthday = data.birthday;
+                that.dataForm.medicalHistory = data.medicalHistory;
+                that.dataForm.insuranceType = data.insuranceType;
+            },
+            false
+        );
     }
+
 };
 </script>
 
