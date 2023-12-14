@@ -394,7 +394,22 @@ export default {
                     }
                 }
             });
-        }
+        },
+        scanIdcardFront: function(resp) {
+            let that = this;
+            let detail = resp.detail;
+
+            that.dataForm.name = detail.name.text;
+            that.dataForm.pid = detail.id.text;
+            that.dataForm.sex = detail.gender.text;
+            that.dataForm.birthday = detail.birth.text;
+
+            this.$refs.form1 .validateField( 'name ' ) ;
+            this.$refs.form1.validateField('pid');
+            this.$refs.form1.validateField('sex');
+            this.$refs.form1.validateField('birthday');
+        },
+
 
 
     },
