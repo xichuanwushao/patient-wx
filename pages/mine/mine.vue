@@ -233,7 +233,6 @@ export default {
 
         navigatorHandle: function(name) {
             let token = uni.getStorageSync('token');
-            //跳转到某些医疗服务页面之前，先判断是否登陆
             if (token == null || token.length == 0) {
                 uni.showToast({
                     icon: 'error',
@@ -245,7 +244,18 @@ export default {
             if (name == '实名登记') {
                 url = '/user/fill_user_info/fill_user_info';
             }
-            //TODO 其他判断条件
+            else if (name == '我的医生') {
+            }
+            else if (name == '检查报告') {
+            }
+            else if (name == '电子处方') {
+            }
+            else if (name == '视频问诊') {
+            }
+            else if (name == '挂号就诊') {
+                url = '/registration/notice/notice';
+            }
+            //console.log(name);
             uni.navigateTo({
                 url: url
             });

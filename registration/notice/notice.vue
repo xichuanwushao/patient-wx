@@ -38,8 +38,49 @@ export default {
 		};
 	},
 	methods: {
-		
-	},
+        acceptHandle: function() {
+            let that = this;
+            //检查用户是否登陆了
+            let token = uni.getStorageSync('token');
+            if (token == null || token.length == 0) {
+                uni.showToast({
+                    icon: 'error',
+                    title: '请先登录小程序'
+                });
+                setTimeout(function() {
+                    uni.switchTab({
+                        url: '/pages/mine/mine'
+                    });
+                }, 2000);
+            }
+            //检查用户是否创建了就诊卡
+            that.ajax(
+                that.api.hasUserInfoCard,
+                'GET',
+                {},
+                function(resp){
+                let result = resp.data.result;
+            if (result) {
+                uni.redirectTo({
+                    url: '/registration/medical_dept_list/medical_dept_list'
+                });
+            } else {
+                uni.showToast({
+                    icon: 'error',
+                    title: '请先创建就诊卡'
+                });
+                setTimeout(function() {
+                    uni.switchTab({
+                        url: '/pages/mine/mine'
+                    });
+                }, 2000);
+            }
+        },
+        false
+);
+}
+
+},
 	onLoad: function() {}
 };
 </script>

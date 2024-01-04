@@ -28,7 +28,7 @@ app.$mount()
 // #endif
 
 
-let minioUrl = "http://172.16.6.0:9002/hospital"
+let minioUrl = "http://192.168.137.210:9002/hospital"
 Vue.prototype.minioUrl = minioUrl
 
 let patientUrl = minioUrl + "/patient-wx"
@@ -40,7 +40,7 @@ Vue.prototype.tencent = {
 	}
 }
 
-let baseUrl = "http://172.16.3.139:8091/patient-wx-api"
+let baseUrl = "http://192.168.137.35:8091/patient-wx-api"
 
 Vue.prototype.api = {
 	loginOrRegister: baseUrl + "/user/loginOrRegister",
@@ -48,7 +48,7 @@ Vue.prototype.api = {
 	updateUserInfoCard: baseUrl + "/user/info/card/update",
 	searchUserInfo:baseUrl + "/user/searchUserInfo",
 	searchUserInfoCard: baseUrl + "/user/info/card/searchUserInfoCard",
-
+	hasUserInfoCard: baseUrl + "/user/info/card/hasUserInfoCard",
 }
 
 Vue.prototype.ajax = function(url, method, data, fun, load) {
