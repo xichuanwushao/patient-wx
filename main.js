@@ -55,6 +55,7 @@ Vue.prototype.api = {
 	searchDeptSubDoctorPlanInDay: baseUrl + "/registration/searchDeptSubDoctorPlanInDay",
 	checkRegisterCondition: baseUrl + "/registration/checkRegisterCondition",
 	createFaceModel: baseUrl + "/face/auth/createFaceModel",
+	verifyFaceModel: baseUrl + "/face/auth/verifyFaceModel",
 }
 
 Vue.prototype.ajax = function(url, method, data, fun, load) {

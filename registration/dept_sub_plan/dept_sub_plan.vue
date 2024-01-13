@@ -159,6 +159,10 @@ export default {
                         });
                     } else {
                         //TODO 跳转到doctor_schedule页面
+                        //这里是新添加的代码
+                        uni.navigateTo({
+                            url: `/registration/doctor_schedule/doctor_schedule?deptsubId=${that.deptSubId}&doctorId=${id}&date=${date}`
+                            });
                     }
                 },
                 false

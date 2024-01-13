@@ -46,6 +46,7 @@ export default {
 		};
 	},
 	methods: {
+
         confirmHandle: function() {
             let that = this;
             //停止播放音频提示信息
@@ -70,10 +71,10 @@ export default {
                             let base64 = 'data:image:/png;base64,' + resp.data;
                             let url = null;
                             if (that.mode == 'create') {
-                                //创建司机面部模型档案
+                                //创建面部模型档案
                                 url = that.api.createFaceModel;
                             } else {
-                                //验证司机面部模型
+                                //验证面部模型
                                 url = that.api.verifyFaceModel;
                             }
                             //提交Ajax请求，上传照片Base64字符串
@@ -90,7 +91,29 @@ export default {
                                         });
                                     }, 2000);
                                 } else {
-                                    //TODO 判断人脸识别结果
+                                    //这里是新添加的代码
+                                    let result = resp.data.result;
+                                    if (result) {
+                                        uni.showToast({
+                                            icon: 'success',
+                                            title: '面部验证成功'
+                                        });
+                                        setTimeout(function() {
+                                            uni.navigateBack({
+                                                delta: 1
+                                            });
+                                        }, 2000);
+                                    } else {
+                                        uni.showToast({
+                                            icon: 'error',
+                                            title: '面部验证失败'
+                                        });
+                                        setTimeout(function() {
+                                            that.showImage = false;
+                                            that.showCamera = true;
+                                            that.audio.play();
+                                        }, 2000);
+                                    }
                                 }
                             });
                         }
@@ -98,7 +121,14 @@ export default {
                 }
             });
         }
-	},
+
+
+
+
+
+
+
+        },
 	onLoad: function(options) {
         let that = this;
         that.mode = options.mode;
