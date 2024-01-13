@@ -83,7 +83,7 @@
 				}, {
 					"path": "doctor_schedule/doctor_schedule",
 					"style": {
-						"navigationBarTitleText": "医生出诊信息",
+						"navigationBarTitleText": "医生192.168.124.199信息",
 						"enablePullDownRefresh": false
 					}
 

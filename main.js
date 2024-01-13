@@ -52,7 +52,8 @@ Vue.prototype.api = {
 	searchMedicalDeptList: baseUrl + "/medical/dept/searchMedicalDeptList",
 	searchMedicalDeptSubList: baseUrl + "/medical/dept/sub/searchMedicalDeptSubList",
 	searchCanRegisterInDateRange: baseUrl + "/registration/searchCanRegisterInDateRange",
-	searchDeptSubDoctorPlanInDay: baseUrl + "/registration/searchDeptSubDoctorPlanInDay"
+	searchDeptSubDoctorPlanInDay: baseUrl + "/registration/searchDeptSubDoctorPlanInDay",
+	checkRegisterCondition: baseUrl + "/registration/checkRegisterCondition",
 }
 
 Vue.prototype.ajax = function(url, method, data, fun, load) {
